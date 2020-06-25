@@ -1,0 +1,25 @@
+{{ form.media }}
+
+{% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{{ view.display_name }}
+
+<form action=".?{{ request.GET.urlencode }}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ wizard.management_form }}
+  {{ form.as_p }}
+
+  {% if wizard and wizard.steps.current != wizard.steps.last %}
+      <button type="submit">Next</button>
+  {% else %}
+    <button type="submit">
+      Submit
+    </button>
+  {% endif %}
+</form>

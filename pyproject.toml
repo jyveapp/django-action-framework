@@ -14,7 +14,7 @@ packages = [
 ]
 version = "0.0.0"
 description = "Easily create actions and various interfaces around them."
-authors = ["Jyve Engineering"]
+authors = ["Wes Kendall", "Roman Sul", "Brian Chang"]
 classifiers = [
   "Intended Audience :: Developers",
   "Operating System :: OS Independent",
@@ -34,11 +34,17 @@ documentation = "https://django-action-framework.readthedocs.io"
 [tool.poetry.dependencies]
 python = ">=3.6,<4"
 django = ">=2"
+djangorestframework = "^3.0.0"
+python-args = "^1.0.0"
+django-args = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
+beautifulsoup4 = "^4.8.2"
 black = "=19.10b0"
 boto3 = "=1.9.243"
 dj-database-url = "^0.5.0"
+django-dynamic-fixture = "^3.0.2"
+django-extensions = "^2.2.8"
 flake8 = "=3.7.9"
 flake8-bugbear = "=19.8.0"
 flake8-comprehensions = "=2.2.0"
@@ -53,6 +59,7 @@ pytest = "=5.4.1"
 pytest-cov = "=2.10.0"
 pytest-django = "^3.8.0"
 pytest-dotenv = "^0.4.0"
+pytest-mock = "^2.0.0"
 python-magic = "=0.4.15"
 requests = "^2.22.0"
 Sphinx = "=3.0.3"
