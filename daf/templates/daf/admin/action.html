@@ -1,0 +1,26 @@
+{% extends "daf/admin/change_form.html" %}
+
+{% load apnumber from humanize %}
+
+{% block content_title %}
+  {% if title %}
+    <h1>
+      {{ title }}
+      {% if objects %}
+        - {{ objects|length|apnumber|title }} {% if objects|length > 1 %}{{ opts.verbose_name_plural|title }}{% else %}{{ opts.verbose_name|title }}{% endif %}
+      {% endif %}
+    </h1>
+  {% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {% include "daf/admin/_action_breadcrumbs.html" %}
+{% endblock %}
+
+{% block submit_buttons_top %}
+  {% include "daf/admin/_action_buttons.html" %}
+{% endblock %}
+
+{% block submit_buttons_bottom %}
+  {% include "daf/admin/_action_buttons.html" %}
+{% endblock %}

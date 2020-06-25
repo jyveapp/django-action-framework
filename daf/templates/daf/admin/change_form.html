@@ -1,0 +1,15 @@
+{% extends "admin/change_form.html" %}
+{% load add_preserved_filters from admin_urls %}
+
+{% block object-tools-items %}
+  {% for display_name, url in daf_actions %}
+    <li class="daf-action-item" data-tool-name="{{ display_name }}">
+      <a href="{% add_preserved_filters url %}" title="{{ display_name }}">
+        {{ display_name }}
+      </a>
+    </li>
+  {% endfor %}
+  {% if not hide_object_tools %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}

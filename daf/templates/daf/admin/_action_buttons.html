@@ -1,0 +1,93 @@
+{% load trans from i18n %}
+{% load add_preserved_filters from admin_urls %}
+{% load admin_urlname from admin_urls %}
+{% load admin_urlquote from admin_urls %}
+{% load apnumber from humanize %}
+
+{{ wizard.management_form }}
+
+{% comment %}
+The django admin does not style "button" elements the
+same as "input" submit elements. So we are forced to
+directly copy the style for rendering the "Previous" button
+for now.
+{% endcomment %}
+<style>
+.admin-submit {
+  height: 35px;
+  line-height: 15px;
+  margin: 0 0 0 5px;
+  -webkit-appearance: none;
+  background: #79aec8;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  vertical-align: middle;
+  font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+}
+</style>
+
+<script>
+  {% include 'daf/admin/_form_repo.js' %}
+
+  django.jQuery(function() {
+    var repo = new FormRepo('formrepo');
+    var $form = django.jQuery('#{{ opts.model_name }}_form');
+
+    django.jQuery('#dismiss-failed-objects').click(function(e) {
+      // If the dismiss button is clicked, preserve the form values so
+      // they will persist on page reload.
+      repo.preserve($form);
+    });
+
+    // Try to restore form values if they were persisted from a dismiss
+    // button click
+    repo.restore($form);
+    repo.remove($form);
+  });
+</script>
+
+<div class="submit-row">
+  {% block submit-row %}
+    {% if object %}
+      {% url opts|admin_urlname:'change' object.pk|admin_urlquote as close_url %}
+    {% else %}
+      {% url opts|admin_urlname:'changelist' as close_url %}
+    {% endif %}
+
+    {% if dismiss_failures_url %}
+      <a class="closelink" style="background: #79aec8;" id="dismiss-failed-objects" href="{{ dismiss_failures_url }}">
+        Dismiss {{ failed_objects|length|apnumber|title }} Failing
+        {% if failed_objects|length == 1 %}
+          {{ opts.verbose_name|title }}
+        {% else %}
+          {{ opts.verbose_name_plural|title }}
+        {% endif %}
+      </a>
+    {% endif %}
+
+    {% if wizard and wizard.steps.current != wizard.steps.first %}
+      <button class="admin-submit" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">
+        {% trans 'Previous' %}
+      </button>
+    {% endif %}
+
+    {% if wizard and wizard.steps.current != wizard.steps.last %}
+       <input type="submit" value="{% trans 'Next' %}" class="default" name="_next">
+    {% else %}
+      {% if object %}
+        <input type="submit" value="{% trans 'Submit and continue editing' %}" name="_continue_editing">
+      {% endif %}
+
+      <input type="submit" value="{% trans 'Submit' %}" class="default" name="_submit">
+    {% endif %}
+
+    <p class="deletelink-box">
+      <a href="{% add_preserved_filters close_url %}" class="closelink">{% trans "Close" %}</a>
+    </p>
+  {% endblock %}
+</div>

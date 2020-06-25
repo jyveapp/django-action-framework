@@ -22,3 +22,11 @@ Contributing Guide
 
 For information on setting up django-action-framework for development and
 contributing changes, view `CONTRIBUTING.rst <CONTRIBUTING.rst>`_.
+
+
+Primary Authors
+===============
+
+- @wesleykendall (Wes Kendall)
+- @romansul (Roman Sul)
+- @chang-brian (Brian Chang)
