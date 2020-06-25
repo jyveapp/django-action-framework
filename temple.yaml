@@ -1,0 +1,7 @@
+_extensions:
+- jinja2_time.TimeExtension
+_template: git@github.com:jyveapp/public-django-app-template.git
+_version: 3c0655b938f65250cba26cdc4504f4d7b6df3fe9
+module_name: daf
+repo_name: django-action-framework
+short_description: Easily create actions and various interfaces around them.
