@@ -1,4 +1,8 @@
 # Changelog
+## 1.0.1 (2020-06-28)
+### Trivial
+  - Added more information to the README [Wes Kendall, f775d1a]
+
 ## 1.0.0 (2020-06-25)
 ### Api-Break
   - Initial release of django-action-framework [Wes Kendall, 8ef57d1]
