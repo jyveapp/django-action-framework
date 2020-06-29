@@ -6,16 +6,16 @@ a number of diverse interfaces from a single action definition. What is
 an action? It's a function. By writing a function and providing a few
 hints about the characteristics of your function, you can:
 
-1. Generate a form view from the function.
-2. Generate an update view on a single object that is sent to the function.
-3. Generate a bulk update view on multiple objects that can be parametrized
-   over an individual function or directly sent to a bulk update function.
-4. Generate form wizard views, object wizard views, and bulk object wizard
-   views on a function, even when there are conditional steps.
-5. Write model, object, bulk object views, and all wizard views that natively
-   integrate with the Django admin.
-6. Write object actions for the function that directly integrate with Django
-   Rest Framework viewsets.
+1. Generate a form view from the function with proper form validation.
+2. Generate an update view on a model object that is passed to the function.
+3. Generate a bulk update view on multiple objects. These objects can
+   be parametrized over a function expecting one object, meaning your detail
+   and bulk views share the same code when desired.
+4. Generate wizard views to collect function arguments over multiple steps,
+   even if the steps are conditional.
+5. Natively integrate these views into the Django admin as model, detail,
+   or bulk actions.
+6. Generate Django Rest Framework actions on your viewsets.
 
 ``daf`` removes the boilerplate and cognitive overhead of maintaining validation
 logic, view logic, and update logic spread across Django views, models, admin
