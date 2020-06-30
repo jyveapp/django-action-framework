@@ -3,6 +3,7 @@ import os
 import re
 
 import arg
+from django.db import transaction
 import djarg
 
 import daf.contrib
@@ -283,6 +284,8 @@ class ObjectAction(ModelAction):
        if more than one error is trapped in a parameterized run.
     3. Automatically maps the ``object`` argument to the argument identified
        by the ``object_arg`` attribute.
+    4. Wraps everything in a transaction and applies a select_for_update to
+       the queryset if select_for_update is supplied.
     """
 
     abstract = True
@@ -290,12 +293,19 @@ class ObjectAction(ModelAction):
     #: The name of the object arg for the action callable
     object_arg = None
 
+    #: Select_for_update parameters if the action is atomic
+    select_for_update = ['self']
+
     # Object actions default to operating on "object" or "objects"
     # arguments. Object actions also trap individual errors and raise
     # aggregate errors by default
     @daf.utils.classproperty
     def wrapper(cls):
-        return arg.s(
+        arg_decs = []
+        if cls.select_for_update is not None:  # pragma: no branch
+            arg_decs = [arg.contexts(transaction.atomic)]
+
+        arg_decs += [
             arg.contexts(trapped_errors=daf.contrib.raise_trapped_errors),
             arg.defaults(
                 objects=arg.first(
@@ -304,11 +314,19 @@ class ObjectAction(ModelAction):
                     daf.contrib.single_list(cls.object_arg),
                 )
             ),
-            arg.defaults(objects=djarg.qset('objects', qset=cls.queryset)),
+            arg.defaults(
+                objects=djarg.qset(
+                    'objects',
+                    qset=cls.queryset,
+                    select_for_update=cls.select_for_update,
+                )
+            ),
             arg.parametrize(**{cls.object_arg: arg.val('objects')}),
             arg.contexts(daf.contrib.trap_errors),
             super().wrapper,
-        )
+        ]
+
+        return arg.s(*arg_decs)
 
     @classmethod
     def check_class_definition(cls):
@@ -353,11 +371,18 @@ class ObjectsAction(ModelAction):
     #: The name of the objects arg for the action callable
     objects_arg = None
 
+    #: Select_for_update parameters if the action is atomic
+    select_for_update = ['self']
+
     # Objects actions default to operating on "object" or "objects"
     # arguments.
     @daf.utils.classproperty
     def wrapper(cls):
-        return arg.s(
+        arg_decs = []
+        if cls.select_for_update is not None:  # pragma: no branch
+            arg_decs = [arg.contexts(transaction.atomic)]
+
+        arg_decs += [
             arg.defaults(
                 **{
                     cls.objects_arg: arg.first(
@@ -370,12 +395,16 @@ class ObjectsAction(ModelAction):
             arg.defaults(
                 **{
                     cls.objects_arg: djarg.qset(
-                        cls.objects_arg, qset=cls.queryset
+                        cls.objects_arg,
+                        qset=cls.queryset,
+                        select_for_update=cls.select_for_update,
                     )
                 }
             ),
             super().wrapper,
-        )
+        ]
+
+        return arg.s(*arg_decs)
 
     @classmethod
     def check_class_definition(cls):
