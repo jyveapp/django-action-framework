@@ -682,3 +682,22 @@ non-rest framework errors with the stringified error as the message.
 However, if a Django ``ValidationError`` is raised,
 `daf.rest_framework.raise_drf_error` will fill in the ``code`` of the
 ``APIException`` using the ``code`` from the ``ValidationError``.
+
+
+Atomicity of actions
+--------------------
+
+All action classes that operate on objects (`daf.actions.ObjectAction` and
+`daf.actions.ObjectsAction`) operate atomically by default, meaning that
+a ``select_for_update`` is applied to the object(s) in question in a transaction
+before running any validations or action code. If this behavior is
+undesirable or if the user wishes to control atomicity manually, set
+the ``select_for_update`` class variable on the action class to ``None``.
+
+.. note::
+
+    The ``select_for_update`` class attribute just passes the argument through
+    to ``djarg.qset``. For more information about how to configure this
+    parameter to suit your needs (such as skipping locked objects),
+    see the `djarg docs <https://django-args.readthedocs.io>`__ and
+    the `docs for select_for_update <https://docs.djangoproject.com/en/3.0/ref/models/querysets/#select-for-update>`__.

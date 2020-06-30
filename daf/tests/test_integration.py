@@ -22,6 +22,30 @@ def api_client():
     return APIClient()
 
 
+@pytest.mark.django_db(transaction=True)
+def test_atomicity(client):
+    """
+    Tests that actions are atomic by default
+    """
+    atomic_check = daf.registry.get('tests.atomic_check')
+    view_url_name = atomic_check.interfaces['object_view'].url_name
+    ddf.G(auth_models.User, username='dup')
+    # Try performing the action with a badusername
+    user = ddf.G(auth_models.User, username='non_dup', first_name='first')
+
+    url = urls.reverse(view_url_name, kwargs={'pk': user.pk})
+    resp = client.get(url)
+    client.force_login(user)
+    resp = client.post(
+        url, data={'user': user.id, 'username': 'dup', 'first_name': 'other'}
+    )
+    assert 'unique' in resp.content.decode()
+
+    user.refresh_from_db()
+    assert user.username == 'non_dup'
+    assert user.first_name == 'first'
+
+
 @pytest.mark.django_db
 def test_basic_action(client):
     """
