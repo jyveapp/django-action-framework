@@ -1,5 +1,17 @@
 # Changelog
-## 1.0.1 (2020-06-28)
+## 1.1.0 (2020-06-30)
+### Feature
+  - Add atomicity and locking to object actions. [Wes Kendall, 086c70c]
+
+    By default, ``ObjectAction`` and ``ObjectsAction`` lock the object(s)
+    being updated with a select_for_update and wrap the action in a transaction.
+    Since this is done with the ``djarg.qset`` helper, transactions and locking
+    will *not* happen when only running validations.
+
+    This behavior was documented and can be turned off by setting the
+    ``select_for_update`` attribute of actions to ``None``
+
+## 1.0.1 (2020-06-29)
 ### Trivial
   - Added more information to the README [Wes Kendall, f775d1a]
 

@@ -20,10 +20,10 @@ click==7.1.2
 colorama==0.4.3; sys_platform == "win32" or platform_system == "Windows"
 cookiecutter==1.7.2
 coverage==5.1
-distlib==0.3.0
+distlib==0.3.1
 dj-database-url==0.5.0
 django==3.0.7
-django-args==1.0.0
+django-args==1.1.0
 django-dynamic-fixture==3.1.0
 django-extensions==2.2.9
 django-formtools==2.2
@@ -38,9 +38,9 @@ flake8-import-order==0.18.1
 flake8-logging-format==0.6.0
 flake8-mutable==1.2.0
 identify==1.4.20
-idna==2.9
+idna==2.10
 imagesize==1.2.0
-importlib-metadata==1.6.1
+importlib-metadata==1.7.0
 importlib-resources==2.0.1; python_version < "3.7"
 jinja2==2.11.2
 jinja2-time==0.2.0
@@ -65,7 +65,7 @@ pytest-cov==2.10.0
 pytest-django==3.9.0
 pytest-dotenv==0.4.0
 pytest-mock==2.0.0
-python-args==1.0.0
+python-args==1.0.2
 python-dateutil==2.8.1
 python-dotenv==0.13.0
 python-magic==0.4.15
