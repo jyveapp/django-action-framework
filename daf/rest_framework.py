@@ -130,7 +130,9 @@ class DetailAction(daf.interfaces.Interface):
         request_args = self.request.data
         form = self.form_class(request_args)
         default_args = {**self.get_default_args(), **request_args}
-        form = djarg.forms.adapt(form, self.action.func, default_args)
+        form = djarg.forms.adapt(
+            form, self.action.func, default_args, clean=False
+        )
         form.full_clean()
 
         self.args = {**default_args, **form.cleaned_data}
