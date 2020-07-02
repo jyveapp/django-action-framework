@@ -1,4 +1,12 @@
 # Changelog
+## 1.2.0 (2020-07-02)
+### Bug
+  - Adapts DRF action forms with django-args [Wes Kendall, ff0329b]
+
+    DRF actions previously performed no adaptation of their forms using
+    djarg.forms.adapt. This meant that any dynamic utilities like djarg.forms.Field
+    would not work on DRF action forms.
+
 ## 1.1.1 (2020-07-02)
 ### Trivial
   - Attach additional exception context and fix display_name rendering from admin actions [Wes Kendall, 60b3686]

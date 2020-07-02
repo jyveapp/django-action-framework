@@ -12,7 +12,7 @@ name = "django-action-framework"
 packages = [
   { include = "daf" }
 ]
-version = "1.1.1"
+version = "1.2.0"
 description = "Easily create actions and various interfaces around them."
 authors = ["Wes Kendall", "Roman Sul", "Brian Chang"]
 classifiers = [
