@@ -1,4 +1,8 @@
 # Changelog
+## 1.2.1 (2020-07-02)
+### Trivial
+  - Don't adapt python args validators to DRF action interface forms [Wes Kendall, 45011a4]
+
 ## 1.2.0 (2020-07-02)
 ### Bug
   - Adapts DRF action forms with django-args [Wes Kendall, ff0329b]
