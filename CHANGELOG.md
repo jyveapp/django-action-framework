@@ -1,4 +1,8 @@
 # Changelog
+## 1.1.1 (2020-07-02)
+### Trivial
+  - Attach additional exception context and fix display_name rendering from admin actions [Wes Kendall, 60b3686]
+
 ## 1.1.0 (2020-06-30)
 ### Feature
   - Add atomicity and locking to object actions. [Wes Kendall, 086c70c]
