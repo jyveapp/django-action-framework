@@ -46,7 +46,7 @@ class ActionMixin:
         extra_context = extra_context or {}
         extra_context['daf_actions'] = [
             (
-                interface.action.display_name,
+                interface.display_name,
                 urls.reverse(
                     f'admin:{interface.url_name}',
                     kwargs={interface.pk_url_kwarg: object_id},
@@ -250,7 +250,7 @@ class AdminViewInterfaceMixin:
 
         return {
             **self.admin.admin_site.each_context(request),
-            'title': self.action.display_name,
+            'title': self.display_name,
             'adminform': admin_form,
             'original': obj,
             'is_popup': False,

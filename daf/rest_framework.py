@@ -74,9 +74,10 @@ def raise_drf_error(exception_class=APIException):
             else:
                 msg = str(exc)
 
-            raise exception_class(
-                msg, code=getattr(exc, 'code', None)
-            ) from exc
+            daf_exc = exception_class(msg, code=getattr(exc, 'code', None))
+            daf_exc._daf_exc = exc
+
+            raise daf_exc from exc
         else:
             raise
 
