@@ -5,6 +5,7 @@ import arg
 from django import forms
 from django.conf import settings
 from django.core import exceptions
+import djarg.forms
 import rest_framework.decorators as drf_decorators
 import rest_framework.exceptions as drf_exceptions
 from rest_framework.response import Response
@@ -128,12 +129,11 @@ class DetailAction(daf.interfaces.Interface):
     def run(self):
         request_args = self.request.data
         form = self.form_class(request_args)
+        default_args = {**self.get_default_args(), **request_args}
+        form = djarg.forms.adapt(form, self.action.func, default_args)
         form.full_clean()
-        self.args = {
-            **self.get_default_args(),
-            **request_args,
-            **form.cleaned_data,
-        }
+
+        self.args = {**default_args, **form.cleaned_data}
 
         def _validate_form():
             if not form.is_valid():
