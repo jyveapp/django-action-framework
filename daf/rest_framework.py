@@ -47,11 +47,14 @@ class APIException(drf_exceptions.APIException):
     The base error class raised by `raise_drf_error`.
     """
 
-    status_code = getattr(
-        settings,
-        'DAF_DEFAULT_REST_FRAMEWORK_ERROR_STATUS_CODE',
-        drf_status.HTTP_400_BAD_REQUEST,
-    )
+    @property
+    def status_code(self):
+        return getattr(
+            settings,
+            'DAF_DEFAULT_REST_FRAMEWORK_ERROR_STATUS_CODE',
+            drf_status.HTTP_400_BAD_REQUEST,
+        )
+
     default_detail = 'Invalid input.'
     default_code = 'invalid'
 
