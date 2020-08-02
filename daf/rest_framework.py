@@ -11,6 +11,7 @@ from rest_framework.response import Response
 import rest_framework.status as drf_status
 
 import daf.interfaces
+import daf.registry
 
 
 class InstallDAFActions(type):
