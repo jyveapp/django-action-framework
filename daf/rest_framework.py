@@ -6,7 +6,6 @@ from django import forms
 from django.conf import settings
 from django.core import exceptions
 import djarg.forms
-import rest_framework.decorators as drf_decorators
 import rest_framework.exceptions as drf_exceptions
 from rest_framework.response import Response
 import rest_framework.status as drf_status
@@ -182,6 +181,14 @@ class DetailAction(daf.interfaces.Interface):
             **kwargs: Any additional argument accepted by the drf.action
                 decorator.
         """
+        # NOTE(@tomage): Moving this import in here, as if it is on module top-
+        # level, it results in an error if `daf.rest_framework` is imported
+        # prematurely in another process (e.g. before Django has loaded up the
+        # settings module).
+        # It is generally discouraged that libraries do this (see django docs)
+        # and this issue has been reported to DRF in particular (see
+        # here: https://github.com/encode/django-rest-framework/issues/6030).
+        import rest_framework.decorators as drf_decorators
 
         def _drf_detail_action(viewset, request, pk, **kwargs):
             """
