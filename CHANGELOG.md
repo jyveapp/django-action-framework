@@ -1,4 +1,9 @@
 # Changelog
+## 1.3.1 (2020-08-01)
+### Trivial
+  - Add a missing import (only needed if `daf.rest_framework` is imported before `daf.registry` is imported) [Tómas Árni Jónasson, c621e30]
+  - Move DRF import into a classmethod to avoid premature usage of Django settings [Tómas Árni Jónasson, 891fc44]
+
 ## 1.3.0 (2020-07-21)
 ### Bug
   - Avoid using Django settings in module top-level [Tómas Árni Jónasson, fb4ada7]
