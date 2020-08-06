@@ -270,7 +270,7 @@ description = "Django wrappers for python-args functions."
 name = "django-args"
 optional = false
 python-versions = ">=3.6,<4"
-version = "1.3.0"
+version = "1.4.0"
 
 [package.dependencies]
 django = ">=2"
@@ -1100,7 +1100,6 @@ version = "0.2.5"
 [[package]]
 category = "dev"
 description = "Backport of pathlib-compatible object wrapper for zip files"
-marker = "python_version < \"3.8\""
 name = "zipp"
 optional = false
 python-versions = ">=3.6"
@@ -1111,7 +1110,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "3d64c4450dbcb1195603ff37b02fe938c6013f97edef6b6965481d73a8c6d5d4"
+content-hash = "e773f49f43f5e384592ac67876fa972ad90fde4a3ac752f3bde001dfb5daf21b"
 python-versions = ">=3.6,<4"
 
 [metadata.files]
@@ -1238,8 +1237,8 @@ django = [
     {file = "Django-3.0.8.tar.gz", hash = "sha256:31a5fbbea5fc71c99e288ec0b2f00302a0a92c44b13ede80b73a6a4d6d205582"},
 ]
 django-args = [
-    {file = "django-args-1.3.0.tar.gz", hash = "sha256:bac8cd47b46c1855f37c37d43409b40ff96f476bda18be2dfbd4e05bf085c227"},
-    {file = "django_args-1.3.0-py3-none-any.whl", hash = "sha256:36cb015f184ae3eacf45b6cef4f0a5d11f51923d6cab75809b2588c494574a2e"},
+    {file = "django-args-1.4.0.tar.gz", hash = "sha256:053a309a09215e832020017d924e543d47cace640c113e2dc089c111fae8ff95"},
+    {file = "django_args-1.4.0-py3-none-any.whl", hash = "sha256:a3923f1dde13b853095af979fdb8d6f9816387bfb44df4959ea6850d02ee55e0"},
 ]
 django-dynamic-fixture = [
     {file = "django-dynamic-fixture-3.1.0.tar.gz", hash = "sha256:e772102ba40f70c2e66470cae85f3874aa992e6b22a0d0c360450f2949b0728d"},

@@ -36,7 +36,7 @@ python = ">=3.6,<4"
 django = ">=2"
 djangorestframework = "^3.0.0"
 python-args = "^1.0.2"
-django-args = "^1.3.0"
+django-args = "^1.4.0"
 
 [tool.poetry.dev-dependencies]
 beautifulsoup4 = "^4.8.2"
