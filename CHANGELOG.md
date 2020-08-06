@@ -1,5 +1,10 @@
 # Changelog
-## 1.3.1 (2020-08-01)
+## 1.3.2 (2020-08-05)
+### Trivial
+  - Update all non-pinned dependencies [Tómas Árni Jónasson, 2f965df]
+  - Update `django-args` to verion 1.4.0 which fixes a bug in multi-object forms [Tómas Árni Jónasson, f573d56]
+
+## 1.3.1 (2020-08-04)
 ### Trivial
   - Add a missing import (only needed if `daf.rest_framework` is imported before `daf.registry` is imported) [Tómas Árni Jónasson, c621e30]
   - Move DRF import into a classmethod to avoid premature usage of Django settings [Tómas Árni Jónasson, 891fc44]
