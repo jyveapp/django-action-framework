@@ -2,6 +2,12 @@
 
 {% load apnumber from humanize %}
 
+{% block inline_field_sets %}
+<div style="display: none">
+{{block.super}}
+</div>
+{% endblock %}
+
 {% block content_title %}
   {% if title %}
     <h1>
