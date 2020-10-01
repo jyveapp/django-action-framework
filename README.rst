@@ -43,6 +43,14 @@ Install django-action-framework with::
 After this, add ``daf`` to the ``INSTALLED_APPS``
 setting of your Django project.
 
+Also ensure the following apps are in ``INSTALLED_APPS``:
+
+- ``django.contrib.admin``
+- ``django.contrib.auth``
+- ``django.contrib.contenttypes``
+- ``django.contrib.humanize``
+- ``django.contrib.staticfiles``
+
 Contributing Guide
 ==================
 
