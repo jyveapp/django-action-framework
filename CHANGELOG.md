@@ -1,5 +1,16 @@
 # Changelog
-## 1.3.2 (2020-08-05)
+## 1.4.0 (2020-09-30)
+### Bug
+  - action.html: Hide inlines [John Vandenberg, c6a316d]
+
+    Django admin inlines were being shown on the action forms.
+    They are not relevant and unpredictable content, but removing them
+    can break the admin form, so hiding them is the easy fix for
+    all cases encountered thus far.
+### Trivial
+  - README.rst: Mention other required apps [John Vandenberg, ad12876]
+
+## 1.3.2 (2020-08-06)
 ### Trivial
   - Update all non-pinned dependencies [Tómas Árni Jónasson, 2f965df]
   - Update `django-args` to verion 1.4.0 which fixes a bug in multi-object forms [Tómas Árni Jónasson, f573d56]
