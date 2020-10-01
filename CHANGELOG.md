@@ -1,5 +1,9 @@
 # Changelog
-## 1.3.2 (2020-08-05)
+## 1.3.3 (2020-09-30)
+### Trivial
+  - README.rst: Mention other required apps [John Vandenberg, ad12876]
+
+## 1.3.2 (2020-08-06)
 ### Trivial
   - Update all non-pinned dependencies [Tómas Árni Jónasson, 2f965df]
   - Update `django-args` to verion 1.4.0 which fixes a bug in multi-object forms [Tómas Árni Jónasson, f573d56]
