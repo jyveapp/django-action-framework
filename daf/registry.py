@@ -1,8 +1,6 @@
 import collections
-import importlib
 
-from django.apps import apps
-
+from django.utils.module_loading import autodiscover_modules
 
 _registry = {}
 
@@ -22,11 +20,7 @@ def autodiscover_actions():
     Imports the "actions" module of every installed app
     to discover actions
     """
-    for app in apps.get_app_configs():
-        actions_module = f'{app.module.__name__}.actions'
-        module_spec = importlib.util.find_spec(actions_module)
-        if module_spec is not None:
-            importlib.import_module(actions_module)
+    autodiscover_modules('actions')
 
 
 def get(uri):
