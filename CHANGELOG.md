@@ -1,5 +1,26 @@
 # Changelog
-## 1.4.0 (2020-09-30)
+## 1.5.0 (2021-07-01)
+### Bug
+  - Don't override action methods on viewset classes [Wes Kendall, cc34e82]
+
+    When DAF overrides the class definition with actions, it now will check
+    if the action is already defined and ignore setting the class attribute.
+    Previously it asserted it wasn't there and failed loudly, but that caused
+    issues for subclasses. Overriding it also causes issues for subclasses.
+
+    For now, we are ignoring adding the action if it is already defined.
+    We may want to revisit this behavior in the future.
+  - Removed a useless assert that caused errors [Wes Kendall, 98eea01]
+
+    An extra-defensive assert was added in to the DAF action installer
+    that caused errors whenever one would subclass DRF viewsets. This
+    assert has been removed.
+
+## 1.3.3 (2020-10-01)
+### Trivial
+  - README.rst: Mention other required apps [John Vandenberg, ad12876]
+
+## 1.4.0 (2020-10-01)
 ### Bug
   - action.html: Hide inlines [John Vandenberg, c6a316d]
 
@@ -7,8 +28,6 @@
     They are not relevant and unpredictable content, but removing them
     can break the admin form, so hiding them is the easy fix for
     all cases encountered thus far.
-### Trivial
-  - README.rst: Mention other required apps [John Vandenberg, ad12876]
 
 ## 1.3.2 (2020-08-06)
 ### Trivial
