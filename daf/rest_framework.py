@@ -22,7 +22,8 @@ class InstallDAFActions(type):
 
         for interface in cls.get_daf_actions().filter(type='detail_action'):
             method_name = f'detail_{interface.action.name}'
-            setattr(cls, method_name, interface.as_interface())
+            if not hasattr(cls, method_name):  # pragma: no cover
+                setattr(cls, method_name, interface.as_interface())
 
         return cls
 
