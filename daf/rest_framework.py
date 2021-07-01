@@ -22,7 +22,6 @@ class InstallDAFActions(type):
 
         for interface in cls.get_daf_actions().filter(type='detail_action'):
             method_name = f'detail_{interface.action.name}'
-            assert not hasattr(cls, method_name)
             setattr(cls, method_name, interface.as_interface())
 
         return cls
