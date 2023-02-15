@@ -26,7 +26,7 @@ django-args==1.4.0; python_version >= "3.6" and python_version < "4"
 django-dynamic-fixture==3.1.1
 django-extensions==2.2.9
 django-formtools==2.3; python_version >= "3.6" and python_version < "4"
-django==3.2.5; python_version >= "3.6"
+django==3.2.18; python_version >= "3.6"
 djangorestframework==3.12.4; python_version >= "3.5"
 docutils==0.15.2; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.5"
 entrypoints==0.3; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.5"
