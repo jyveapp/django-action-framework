@@ -40,7 +40,6 @@ django-args = "^1.4.0"
 
 [tool.poetry.dev-dependencies]
 beautifulsoup4 = "^4.8.2"
-black = "=19.10b0"
 boto3 = "=1.9.243"
 dj-database-url = "^0.5.0"
 django-dynamic-fixture = "^3.0.2"
